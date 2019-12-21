@@ -1,4 +1,4 @@
-package lab3; // Holla amigo
+package lab3;
 
 import javax.swing.*;
 import java.awt.*;
