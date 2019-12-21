@@ -35,7 +35,7 @@ public class GornerTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 3;
     }
 
     @Override
@@ -53,37 +53,19 @@ public class GornerTableModel extends AbstractTableModel {
                 result += ren * coefficients[i];
             }
             return result;
-        } else if (col == 2) {
-            Double result = 0.0;
-            for (int i = 0; i < coefficients.length; i++) {
-                double ren = 1;
-                for (int j = coefficients.length - 1 - i; j >= 1; j--) {
-                    ren *= x;
-                }
-                result += ren * coefficients[coefficients.length - 1 - i];
-            }
-            return result;
         } else {
-            Double result1 = 0.0;
+        	Double result = 0.0;
             for (int i = 0; i < coefficients.length; i++) {
                 double ren = 1;
                 for (int j = coefficients.length - 1 - i; j >= 1; j--) {
                     ren *= x;
                 }
-                result1 += ren * coefficients[i];
+                result += ren * coefficients[i];
             }
-
-            Double result2 = 0.0;
-            for (int i = 0; i < coefficients.length; i++) {
-                double ren = 1;
-                for (int j = coefficients.length - 1 - i; j >= 1; j--) {
-                    ren *= x;
-                }
-                result2 += ren * coefficients[coefficients.length - 1 - i];
-            }
-
-            return result1 - result2;
-        }
+            String temp = String.valueOf(result.intValue());
+            String reverse = new StringBuffer(temp).reverse().toString();
+           return temp.equals(reverse);
+        } 
     }
 
     public String getColumnName(int col) {
@@ -92,10 +74,8 @@ public class GornerTableModel extends AbstractTableModel {
                 return "Значение X";
             case 1:
                 return "Значение многочлена 1";
-            case 2:
-                return "Значения многочлена 2";
             default:
-                return "Разница";
+                return "Целая часть палиндром?";
         }
     }
 

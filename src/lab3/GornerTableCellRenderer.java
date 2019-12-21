@@ -30,42 +30,38 @@ public class GornerTableCellRenderer implements TableCellRenderer {
 
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                                                    boolean hasFocus, int row, int col) {
-        String formattedDouble = formatter.format(value);
+    	panel.setBackground(Color.WHITE);
+       if (col == 2) {
+    	   if (value.toString() == "true") {
+       		panel.setBackground(Color.BLUE);
+    	   }
+    	   label.setText(value.toString());;
+    	   return panel;
+       }
+    	String formattedDouble = formatter.format(value);
 
         label.setText(formattedDouble);
 
-        if ((col == 1 || col == 2 || col == 3) && needle != null && needle.equals(formattedDouble)) {
+        if ((col == 1) && needle != null && needle.equals(formattedDouble)) {
             panel.setBackground(Color.RED);
         } else {
-            if (row % 2 == 0) {
-                if (col % 2 == 0) {
-                    panel.setBackground(Color.WHITE);
-                    label.setForeground(Color.BLACK);
-                } else {
-                    panel.setBackground(Color.BLACK);
-                    label.setForeground(Color.WHITE);
-                }
-            } else {
-                if (col % 2 != 0) {
-                    panel.setBackground(Color.WHITE);
-                    label.setForeground(Color.BLACK);
-                } else {
-                    panel.setBackground(Color.BLACK);
-                    label.setForeground(Color.WHITE);
-                }
-            }
-        }
-
-        if (from != null & to != null) {
-            Double val = Double.parseDouble(formattedDouble);
-            Double f = Double.parseDouble(from);
-            Double t = Double.parseDouble(to);
-
-            if (val >= f && val <= t) {
-                panel.setBackground(Color.magenta);
-                label.setForeground(Color.WHITE);
-            }
-
+        	String str1 = "0", str2 = "0";
+        	boolean flag = false;
+        	for (int i = 0; i < formattedDouble.length(); i++) {
+        		if (formattedDouble.charAt(i) == '.') {
+        			flag = true;
+        			continue;
+        		}
+        		if (flag == false) 
+        			str1 += formattedDouble.charAt(i);
+        		else
+        			str2+= formattedDouble.charAt(i);	
+        	}
+        	int a = Integer.parseInt(str1), b = Integer.parseInt(str2);
+        	System.out.println(a + " " + b);
+        	if (a - b == 0) {
+        		panel.setBackground(Color.BLUE);
+        	}
         }
         return panel;
     }

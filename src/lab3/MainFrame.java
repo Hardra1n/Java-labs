@@ -90,7 +90,7 @@ public class MainFrame extends JFrame {
         textFieldFrom.setMaximumSize(textFieldFrom.getPreferredSize());
 
         JLabel labelForTo = new JLabel("до:");
-        textFieldTo = new JTextField("1.0", 10);
+        textFieldTo = new JTextField("10", 10);
         textFieldTo.setMaximumSize(textFieldTo.getPreferredSize());
 
         JLabel labelForStep = new JLabel("с шагом:");
